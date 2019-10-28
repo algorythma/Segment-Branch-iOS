@@ -290,9 +290,11 @@
 #pragma mark - Segment Interface
 
 - (void)track:(SEGTrackPayload *)payload {
-    BranchEvent *event = [self.class branchEventFromSegmentEvent:payload.event dictionary:payload.properties];
-    [event logEvent];
-    SEGLog(@"[BranchEvent logEvent]: %@.", event);
+//    BranchEvent *event = [self.class branchEventFromSegmentEvent:payload.event dictionary:payload.properties];
+//    [event logEvent];
+//    SEGLog(@"[BranchEvent logEvent]: %@.", event);
+    [[Branch getInstance] userCompletedAction:payload.event withState:payload.properties];
+    SEGLog(@"[BranchEvent userCompletedAction]: %@.", payload.event);
 }
 
 - (void)screen:(SEGScreenPayload *)payload {
